@@ -33,15 +33,20 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
+        <script src="js/jquery.min.js"></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <script src="/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/index.css">
+        <script src="js/index.js"></script>
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+        <div class="container align-center">
+            <div class="row d-flex justify-content-center my-5">
+                <img class="floating" src="img/title.png" alt="">
+            </div>
+            <div class="row d-flex justify-content-center my-5">
+                <img id="playImg" src="img/playButton.png">
             </div>
         </div>
         <script src="cordova.js"></script>
