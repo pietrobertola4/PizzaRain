@@ -93,6 +93,16 @@ body {
     background-image: url(../img/watch.png);
 }
 
+.petardo{
+    background-image: url(../img/firecracker.png);
+}
+
+.pizza{
+    background-image: url(../img/pizza.png);
+}
+
+
+
 @keyframes projectile {
     0% {
         transform: translate(0, 0vh);

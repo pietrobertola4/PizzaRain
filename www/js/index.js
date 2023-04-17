@@ -1,5 +1,6 @@
 $(() => {
     let player = $("#imgContainer")
+    let projectileType=["orologio","pizza","pietra","petardo"]
     let finePartita = false;
     $("#gameSection").hide()
     $("#playImg").on("click", () => {
