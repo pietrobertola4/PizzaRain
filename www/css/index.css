@@ -77,8 +77,8 @@ body {
 
 .projectile {
     position: absolute;
-    width: 15vw;
-    height: 15vh;
+    width: 12vw;
+    height: 17vh;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -93,15 +93,17 @@ body {
     background-image: url(../img/watch.png);
 }
 
-.petardo{
+.petardo {
     background-image: url(../img/firecracker.png);
 }
 
-.pizza{
+.pizza {
     background-image: url(../img/pizza.png);
 }
 
-
+.pietra {
+    background-image: url(../img/flaming-rock.png);
+}
 
 @keyframes projectile {
     0% {
@@ -116,4 +118,13 @@ body {
 .paused {
     animation-play-state: paused !important;
     transition: none !important;
+}
+
+#text {
+    position: absolute;
+    top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    text-align: center;
 }

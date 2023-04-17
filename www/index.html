@@ -29,7 +29,35 @@
     </div>
     <div id="gameSection" class="container align-center">
         <div id="imgContainer" class="row d-flex justify-content-center"></div>
+        <div class="container" id="text">
+            <h3 id="lives"></h3>
+            <h4 id="points"></h4>
+        </div>
+
     </div>
-    <script src="cordova.js"></script>
+
+    <div id="gameOverModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Game Over</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Hai perso, dimmi il tuo nome così tutti possono sapere che sei scarso!</p>
+                    <p id="score"></p>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnEnd" type="button" class="btn btn-primary">Invia</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="cordova.js"></script>
 </body>
 </html>

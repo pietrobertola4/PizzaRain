@@ -1,17 +1,28 @@
 $(() => {
     let player = $("#imgContainer")
-    let projectileType=["orologio","pizza","pietra","petardo"]
+    let projectileType = ["orologio", "pizza", "pietra", "petardo"]
+    let txtLives = $("#lives")
+    let txtPoints = $("#points")
+    let points = 0
+    let lives = 3;
     let finePartita = false;
     $("#gameSection").hide()
     $("#playImg").on("click", () => {
         $("#startSection").hide();
         $("#gameSection").show()
+        player.hide()
+        finePartita = false
+        lives = 3;
+        points = 0;
+        txtLives.text(" ")
+        txtPoints.text(" ")
         /*Camera Plugin Code*/
         //Configuro le opzioni di getPicture
         let opzioni = {
             sourceType: Camera.PictureSourceType.CAMERA,
             destinationType: Camera.DestinationType.DATA_URL,
-            quality: 50
+            quality: 50,
+
         };
         navigator.camera.getPicture(cameraSuccess, cameraError, opzioni);
 
@@ -24,7 +35,9 @@ $(() => {
                 axis: "x",
                 containment: "window"
             });
-            
+
+            player.show()
+
             partita()
         }
         //Richiamata in caso di errori : il mancato scatto di una foto o la mancata selezione
@@ -33,28 +46,51 @@ $(() => {
         }
     })
 
-    function partita(){
-        if (!finePartita){
+    function partita() {
+        txtLives.text('Numero vite: ' + lives)
+        txtPoints.text('Numero punti: ' + points)
+
+        if (lives > 0) {
             creaProiettile();
-            let tempoRnd = ((Math.random() * 2) + 1)*1000
+            let tempoRnd = ((Math.random() * 2) + 1) * 1000
             console.log(tempoRnd);
-            setTimeout(partita,tempoRnd)
-        }else{
-            alert('FINITO')
+            setTimeout(partita, tempoRnd)
         }
     }
 
+    let i = 0;
+
     function creaProiettile() {
-        let projectile = $("<div>").addClass("projectile orologio").appendTo("#gameSection")
+
+
+        let type = Math.floor(Math.random() * 4)
+        console.log(type);
+        let projectile = $("<div id='" + i + "'>").addClass("projectile " + projectileType[type]).appendTo("#gameSection")
+        i++
 
         let projectilePosition = Math.floor(Math.random() * 70)
         projectile.css('left', projectilePosition + '%')
 
-        controlloCollisione = setInterval(() => {
+        let controlloCollisione = setInterval(() => {
+            txtLives.text('Numero vite: ' + lives)
+            txtPoints.text('Numero punti: ' + points)
+
             if (recthit(projectile, "#imgContainer")) {
                 console.log("toccato");
-                projectile.addClass("paused")
-                finePartita = true;
+                if (projectile.hasClass('orologio') || projectile.hasClass('pizza')) {
+                    if (projectile.hasClass('orologio')) {
+                        points += 5
+                    } else {
+                        points += 10
+                    }
+                } else {
+                    lives--
+                    if (lives <= 0) {
+                        gameOver()
+                    }
+                }
+                projectile.remove()
+                console.log(projectile.attr('id'));
                 clearInterval(controlloCollisione)
             }
             else {
@@ -67,6 +103,17 @@ $(() => {
         }, 200);
     }
 
+    function gameOver() {
+        player.hide()
+        $("#gameSection").hide()
+        $("#score").text('Hai fatto ' + points + ' punti!')
+        $("#gameOverModal").modal('show')
+    }
+
+    $("#btnEnd").on("click", () => {
+        $("#gameOverModal").modal('toggle')
+        $("#startSection").show()
+    })
 
     function recthit(rectone, recttwo) {
 
