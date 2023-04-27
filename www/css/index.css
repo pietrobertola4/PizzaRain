@@ -129,7 +129,20 @@ body {
     text-align: center;
 }
 
-.vita{
-    height: 10vw;
-    width: 10vw;
+.vita {
+    height: 15vw;
+    width: 15vw;
+}
+
+#punti {
+    font-family: simpson;
+}
+
+
+@font-face {
+    font-family:
+        simpson;
+
+    src:
+        url('../fonts/Simpsonfont.ttf');
 }

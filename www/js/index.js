@@ -56,7 +56,7 @@ $(() => {
 
     function partita() {
         vite()
-        txtPoints.text('Numero punti: ' + points)
+        txtPoints.text(points)
 
         if (lives > 0) {
             creaProiettile();
@@ -79,7 +79,7 @@ $(() => {
 
         let controlloCollisione = setInterval(() => {
             vite()
-            txtPoints.text('Numero punti: ' + points)
+            txtPoints.text(points)
 
             if (recthit(projectile, "#imgContainer")) {
                 console.log("toccato");
