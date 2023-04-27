@@ -1,6 +1,7 @@
 "use strict";
 
 const fs = require("fs");
+const cors=require('cors')
 const dispatcher = require("./dispatcher");
 const http = require("http");
 let header = { "Content-Type": "text/html;charset=utf-8" };
@@ -28,7 +29,7 @@ dispatcher.addListener("POST", "/api/insPoint", function (req, res) {
             console.log("INSERIMENTO OK");
             res.writeHead(200, headerJSON);
             res.end(JSON.stringify("Inserimento Ok"));
-        } else
+        } else      
             error(req, res, { code: err.codErr, message: err.message });
     });
 });

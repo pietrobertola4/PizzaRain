@@ -1,4 +1,10 @@
+const background = new Audio('../sound/background.mp3');
+const point = new Audio('../sound/point.wav');
+const game_over_sound = new Audio('../sound/game_over.mp3')
+
 $(() => {
+    background.play()
+    background.loop = true; // se voglio mettere una musica di background
     let player = $("#imgContainer")
     let projectileType = ["orologio", "pizza", "pietra", "petardo"]
     let txtLives = $("#lives")
@@ -47,7 +53,7 @@ $(() => {
     })
 
     function partita() {
-        txtLives.text('Numero vite: ' + lives)
+        vite()
         txtPoints.text('Numero punti: ' + points)
 
         if (lives > 0) {
@@ -61,8 +67,6 @@ $(() => {
     let i = 0;
 
     function creaProiettile() {
-
-
         let type = Math.floor(Math.random() * 4)
         console.log(type);
         let projectile = $("<div id='" + i + "'>").addClass("projectile " + projectileType[type]).appendTo("#gameSection")
@@ -72,12 +76,13 @@ $(() => {
         projectile.css('left', projectilePosition + '%')
 
         let controlloCollisione = setInterval(() => {
-            txtLives.text('Numero vite: ' + lives)
+            vite()
             txtPoints.text('Numero punti: ' + points)
 
             if (recthit(projectile, "#imgContainer")) {
                 console.log("toccato");
                 if (projectile.hasClass('orologio') || projectile.hasClass('pizza')) {
+                    point.play()
                     if (projectile.hasClass('orologio')) {
                         points += 5
                     } else {
@@ -103,16 +108,37 @@ $(() => {
         }, 200);
     }
 
+    function vite() {
+        txtLives.html(' ')
+        for(let i=0;i<lives;i++){
+            txtLives.append('<img class="vita" src="img/heart.png">')
+        }
+    }
+
     function gameOver() {
+        game_over_sound.play()
+        navigator.vibrate(500)
+        console.log("vrrrrr")
         player.hide()
         $("#gameSection").hide()
         $("#score").text('Hai fatto ' + points + ' punti!')
         $("#gameOverModal").modal('show')
+        $("#nameWarning").hide()
+
     }
 
     $("#btnEnd").on("click", () => {
-        $("#gameOverModal").modal('toggle')
-        $("#startSection").show()
+        if (!$("#txtNome").val()) {
+            $("#nameWarning").show()
+        } else {
+            console.log($("#txtNome").val().toString());
+            let data = JSON.stringify({ "username": $("#txtNome").val().toString(), "point": points })
+            sendRequest("http://10.88.251.133:8888/api/insPoint", "POST", data, (serverData) => {
+                console.log(serverData);
+            })
+
+        }
+
     })
 
     function recthit(rectone, recttwo) {

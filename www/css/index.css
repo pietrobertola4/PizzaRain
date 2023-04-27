@@ -1,4 +1,4 @@
-html {
+body {
     background: url(/www/img/napoli.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -60,7 +60,7 @@ body {
     border-radius: 50%;
     background-size: cover;
     position: fixed;
-    bottom: 1%;
+    bottom: 10%;
     left: 50%;
 }
 
@@ -127,4 +127,9 @@ body {
     margin-right: auto;
     color: white;
     text-align: center;
+}
+
+.vita{
+    height: 10vw;
+    width: 10vw;
 }

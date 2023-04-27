@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <tp-equiv="Content-Security-Policy"
         content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -15,6 +16,7 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <script src="/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/index.css">
+        <script src="js/libreria.js"></script>
         <script src="js/index.js"></script>
         <title>Napoli Rain</title>
 </head>
@@ -40,17 +42,18 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Game Over</h5>
+                <div class="modal-header justify-content-center">
+                    <h5 class="modal-title">GAME OVER</h5>
                 </div>
                 <div class="modal-body">
                     <p>Hai perso, dimmi il tuo nome così tutti possono sapere che sei scarso!</p>
                     <p id="score"></p>
                     <div class="input-group input-group-sm mb-3">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input"
+                        <input id="txtNome" type="text" class="form-control" aria-label="Sizing example input"
                             aria-describedby="inputGroup-sizing-sm">
                     </div>
+                    <p id="nameWarning" class="text-danger">Inserisci il nome!</p>
                 </div>
                 <div class="modal-footer">
                     <button id="btnEnd" type="button" class="btn btn-primary">Invia</button>
