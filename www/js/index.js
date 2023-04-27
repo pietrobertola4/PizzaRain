@@ -14,6 +14,8 @@ $(() => {
     let finePartita = false;
     $("#gameSection").hide()
     $("#playImg").on("click", () => {
+        background.play()
+        background.loop = true; // se voglio mettere una musica di background
         $("#startSection").hide();
         $("#gameSection").show()
         player.hide()
@@ -110,7 +112,7 @@ $(() => {
 
     function vite() {
         txtLives.html(' ')
-        for(let i=0;i<lives;i++){
+        for (let i = 0; i < lives; i++) {
             txtLives.append('<img class="vita" src="img/heart.png">')
         }
     }
@@ -132,9 +134,11 @@ $(() => {
             $("#nameWarning").show()
         } else {
             console.log($("#txtNome").val().toString());
-            let data = JSON.stringify({ "username": $("#txtNome").val().toString(), "point": points })
-            sendRequest("http://10.88.251.133:8888/api/insPoint", "POST", data, (serverData) => {
-                console.log(serverData);
+            let data = { "username": $("#txtNome").val().toString(), "point": points }
+            sendRequest("https://pietrobertola.altervista.org/NAPOLI/insertPoints.php?username="+$("#txtNome").val().toString()+"&punteggio="+points, "GET", "", (serverData) => {
+                $("#gameOverModal").modal('hide')
+                $("#gameSection").hide();
+                $("#startSection").show()
             })
 
         }
