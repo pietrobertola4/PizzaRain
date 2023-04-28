@@ -129,7 +129,133 @@ body {
     text-align: center;
 }
 
-.vita{
+.vita {
     height: 10vw;
     width: 10vw;
+}
+
+.tableScore {
+    margin-top: 30px;
+    color: white;
+    font-weight: bold;
+}
+
+.tableScore td {
+    text-align: center;
+    padding: 7px;
+}
+
+.tableScore th {
+    text-align: center;
+    padding: 10px;
+}
+
+#btnEnd {
+    font-family: inherit;
+    font-size: 20px;
+    background: red;
+    color: white;
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.2s;
+}
+
+#btnEnd span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+#btnEnd svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+#btnEnd:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+#btnEnd:hover svg {
+    transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+#btnEnd:hover span {
+    transform: translateX(5em);
+}
+
+#btnEnd:active {
+    transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1em);
+    }
+
+    to {
+        transform: translateY(-0.1em);
+    }
+}
+
+
+.inputbox {
+    position: relative;
+    width: 196px;
+}
+
+.inputbox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+.inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 00.05em;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.inputbox input:valid~span,
+.inputbox input:focus~span {
+    color: red;
+    transform: translateX(-10px) translateY(-34px);
+    font-size: 0, 75em;
+}
+
+.inputbox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: red;
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+}
+
+.inputbox input:valid~i,
+.inputbox input:focus~i {
+    height: 44px;
 }
