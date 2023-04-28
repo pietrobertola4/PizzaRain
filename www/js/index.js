@@ -1,6 +1,7 @@
 const background = new Audio('../sound/background.mp3');
 const point = new Audio('../sound/point.wav');
 const game_over_sound = new Audio('../sound/game_over.mp3')
+let velocity = 750;
 
 $(() => {
     createTable();
@@ -60,7 +61,7 @@ $(() => {
 
         if (lives > 0) {
             creaProiettile();
-            let tempoRnd = ((Math.random() * 2) + 1) * 750
+            let tempoRnd = ((Math.random() * 2) + 1) * velocity
             console.log(tempoRnd);
             setTimeout(partita, tempoRnd)
         }
@@ -69,6 +70,10 @@ $(() => {
     let i = 0;
 
     function creaProiettile() {
+        if(velocity >= 250)
+            velocity -= 15;
+
+        console.log("Velocita:" +velocity)
         let type = Math.floor(Math.random() * 4)
         console.log(type);
         let projectile = $("<div id='" + i + "'>").addClass("projectile " + projectileType[type]).appendTo("#gameSection")
@@ -172,6 +177,7 @@ $(() => {
 })
 
 function createTable() {
+    velocity = 750;
     let rq = sendRequestNoCallback("https://pietrobertola.altervista.org/NAPOLI/ViewClassifica.php", "GET");
     rq.fail(function (jqXHR) {
         error(jqXHR);
@@ -191,7 +197,21 @@ function createTable() {
         let td;
         for (let i = 0; i < 5; i++) {
             tr = $("<tr class='p-3' style='background-color:black;opacity:0.5'></tr>");
-            td = $("<td style='color:red;'>" + (i + 1) + "</td>")
+
+            if(i == 0)
+            {
+                td = $("<td style='color:red;'><img src='../img/primo.png' width='30px'/></td>")
+            }
+            else if(i == 1){
+                td = $("<td style='color:red;'><img src='../img/secondo.png' width='30px'/></td>")
+            }
+            else if(i == 2){
+                td = $("<td style='color:red;'><img src='../img/terzo (2).png' width='30px'/></td>")
+            }
+            else{
+                td = $("<td style='color:red;'>" + (i + 1) + "</td>")
+            }
+           
             td.appendTo(tr);
             td = $("<td>" + serverData[i].username + "</td>")
             td.appendTo(tr);
