@@ -90,18 +90,22 @@ body {
 }
 
 .orologio {
+    width: 35px;
     background-image: url(../img/watch.png);
 }
 
 .petardo {
+    width: 60px;
     background-image: url(../img/firecracker.png);
 }
 
 .pizza {
+    width: 40px;
     background-image: url(../img/pizza.png);
 }
 
 .pietra {
+    width: 60px;
     background-image: url(../img/flaming-rock.png);
 }
 
