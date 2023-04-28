@@ -37,7 +37,7 @@ $(() => {
         function cameraSuccess(imageData) {
             /*var image = document.getElementById('imgMia'); //<img> nel html
             image.src = "data:image/jpeg;base64," + imageData;*/
-            player.css({ 'background-image': "url(data:image/jpeg;base64," + imageData + ')', 'border': "solid 5px black" })
+            player.css({ 'background-image': "url(data:image/jpeg;base64," + imageData + ')', 'border': "solid 5px red" })
 
             player.draggable({
                 axis: "x",
@@ -138,6 +138,7 @@ $(() => {
                 $("#gameOverModal").modal('hide')
                 $("#gameSection").hide();
                 $("#startSection").show()
+                createTable();
             })
 
         }
@@ -188,16 +189,16 @@ function createTable() {
         tr1.appendTo($(".tableScore"));
         let tr;
         let td;
-        for(let i = 0; i < 5; i ++) {
+        for (let i = 0; i < 5; i++) {
             tr = $("<tr class='p-3' style='background-color:black;opacity:0.5'></tr>");
-            td = $("<td style='color:red;'>" + (i+1) + "</td>")
+            td = $("<td style='color:red;'>" + (i + 1) + "</td>")
             td.appendTo(tr);
             td = $("<td>" + serverData[i].username + "</td>")
             td.appendTo(tr);
             td = $("<td>" + serverData[i].top + "</td>")
             td.appendTo(tr);
             tr.appendTo($(".tableScore"));
-        }   
-        
+        }
+
     });
 }

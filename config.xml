@@ -9,4 +9,6 @@
     <access origin="*" />
     <allow-navigation href="*"/>
     <allow-intent href="*" />
+    <icon src="res/logo.png" />
+
 </widget>
