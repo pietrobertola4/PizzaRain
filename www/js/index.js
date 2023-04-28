@@ -3,8 +3,8 @@ const point = new Audio('../sound/point.wav');
 const game_over_sound = new Audio('../sound/game_over.mp3')
 
 $(() => {
-    background.play()
-    background.loop = true; // se voglio mettere una musica di background
+    createTable();
+
     let player = $("#imgContainer")
     let projectileType = ["orologio", "pizza", "pietra", "petardo"]
     let txtLives = $("#lives")
@@ -123,7 +123,7 @@ $(() => {
         console.log("vrrrrr")
         player.hide()
         $("#gameSection").hide()
-        $("#score").text('Hai fatto ' + points + ' punti!')
+        $("#score").text(points)
         $("#gameOverModal").modal('show')
         $("#nameWarning").hide()
 
@@ -134,7 +134,7 @@ $(() => {
             $("#nameWarning").show()
         } else {
             console.log($("#txtNome").val().toString());
-            sendRequest("https://pietrobertola.altervista.org/NAPOLI/insertPoints.php?username="+$("#txtNome").val().toString()+"&punteggio="+points, "GET", "", (serverData) => {
+            sendRequest("https://pietrobertola.altervista.org/NAPOLI/insertPoints.php?username=" + $("#txtNome").val().toString() + "&punteggio=" + points, "GET", "", (serverData) => {
                 $("#gameOverModal").modal('hide')
                 $("#gameSection").hide();
                 $("#startSection").show()
@@ -166,4 +166,38 @@ $(() => {
         }
 
     }
+
+
 })
+
+function createTable() {
+    let rq = sendRequestNoCallback("https://pietrobertola.altervista.org/NAPOLI/ViewClassifica.php", "GET");
+    rq.fail(function (jqXHR) {
+        error(jqXHR);
+    });
+    rq.done(function (serverData) {
+        $(".tableScore").html("");
+
+        let tr1 = $("<tr class='p-3' style='background-color:red'></tr>");
+        let th = $("<th></th>");
+        let th1 = $("<th>USERNAME</th>");
+        let th2 = $("<th>SCORE</th>");
+        th.appendTo(tr1);
+        th1.appendTo(tr1);
+        th2.appendTo(tr1);
+        tr1.appendTo($(".tableScore"));
+        let tr;
+        let td;
+        for(let i = 0; i < 5; i ++) {
+            tr = $("<tr class='p-3' style='background-color:black;opacity:0.5'></tr>");
+            td = $("<td style='color:red;'>" + (i+1) + "</td>")
+            td.appendTo(tr);
+            td = $("<td>" + serverData[i].username + "</td>")
+            td.appendTo(tr);
+            td = $("<td>" + serverData[i].top + "</td>")
+            td.appendTo(tr);
+            tr.appendTo($(".tableScore"));
+        }   
+        
+    });
+}

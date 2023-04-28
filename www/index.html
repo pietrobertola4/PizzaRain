@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <tp-equiv="Content-Security-Policy"
         content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:">
+        <meta http-equiv="Content-Security-Policy"
+            content="default-src *; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data:">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -20,10 +22,16 @@
         <script src="js/index.js"></script>
         <title>Napoli Rain</title>
 </head>
+
 <body>
     <div id="startSection" class="container align-center">
         <div class="row d-flex justify-content-center my-5">
             <img class="floating" src="img/title.png" alt="">
+        </div>
+        <div class="row d-flex justify-content-center my-5 mx-2">
+            <table class="tableScore text-center">
+
+            </table>
         </div>
         <div class="row d-flex justify-content-center my-5">
             <img id="playImg" class="floatingBtn" src="img/playButton.png">
@@ -42,25 +50,44 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header justify-content-center">
-                    <h5 class="modal-title">GAME OVER</h5>
-                </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
+                    <img src="img/79582020-emblema-di-divertente-chef-sorridente-fumetto-illustrazione.png" width="300">
                     <p>Hai perso, dimmi il tuo nome così tutti possono sapere che sei scarso!</p>
-                    <p id="score"></p>
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
-                        <input id="txtNome" type="text" class="form-control" aria-label="Sizing example input"
-                            aria-describedby="inputGroup-sizing-sm">
-                    </div>
-                    <p id="nameWarning" class="text-danger">Inserisci il nome!</p>
-                </div>
-                <div class="modal-footer">
-                    <button id="btnEnd" type="button" class="btn btn-primary">Invia</button>
+                    <p>Hai fatto <b style="color: red;" id="score"></b> punti</p>
+
+                    <center>
+
+                        <div class="inputbox">
+                            <input required="required" type="text" id="txtNome">
+                            <span>Username</span>
+                            <i></i>
+                        </div>
+
+                        <br>
+                        <button id="btnEnd">
+                            <div class="svg-wrapper-1">
+                                <div class="svg-wrapper">
+                                    <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                                            fill="currentColor"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <span>Invia</span>
+                        </button>   
+
+                        <p id="nameWarning" class="text-danger" style="font-weight: bold;">Inserisci il tuo username!
+                        </p>
+
+                    </center>
+
                 </div>
             </div>
         </div>
 
         <script src="cordova.js"></script>
 </body>
+
 </html>
