@@ -1,5 +1,5 @@
 body {
-    background: url(/www/img/napoli.jpg) no-repeat center center fixed;
+    background: url(../img/napoli.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -130,6 +130,22 @@ body {
 }
 
 .vita {
+    height: 15vw;
+    width: 15vw;
+}
+
+#points {
+    font-family: simpson;
+}
+
+
+@font-face {
+    font-family:
+        simpson;
+
+    src:
+        url('../fonts/Simpsonfont.ttf');
+
     height: 10vw;
     width: 10vw;
 }
