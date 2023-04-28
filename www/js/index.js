@@ -60,7 +60,7 @@ $(() => {
 
         if (lives > 0) {
             creaProiettile();
-            let tempoRnd = ((Math.random() * 2) + 1) * 1000
+            let tempoRnd = ((Math.random() * 2) + 1) * 750
             console.log(tempoRnd);
             setTimeout(partita, tempoRnd)
         }
@@ -134,7 +134,6 @@ $(() => {
             $("#nameWarning").show()
         } else {
             console.log($("#txtNome").val().toString());
-            let data = { "username": $("#txtNome").val().toString(), "point": points }
             sendRequest("https://pietrobertola.altervista.org/NAPOLI/insertPoints.php?username="+$("#txtNome").val().toString()+"&punteggio="+points, "GET", "", (serverData) => {
                 $("#gameOverModal").modal('hide')
                 $("#gameSection").hide();
